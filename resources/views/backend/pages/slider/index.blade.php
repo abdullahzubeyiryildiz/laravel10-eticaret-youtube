@@ -36,7 +36,7 @@
                         <td class="py-1">
 
                           @php
-                          $images = collect($item->images->data ?? '');
+                          $images = collect($slider->images->data ?? '');
                           @endphp
                           <img src="{{asset($images->sortByDesc('vitrin')->first()['image'] ?? 'img/resimyok.png')}}" ></img>
 
