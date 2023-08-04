@@ -4,7 +4,14 @@
 <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
     <div class="block-4 text-center border">
     <figure class="block-4-image">
-        <a href="{{route('urundetay',$product->slug)}}"><img src="{{asset($product->image)}}" alt="Image placeholder" class="img-fluid"></a>
+        <a href="{{route('urundetay',$product->slug)}}">
+
+            @php
+            $images = collect($product->images->data ?? '');
+            @endphp
+            <img src="{{asset($images->sortByDesc('vitrin')->first()['image'] ?? 'img/resimyok.png')}}"  alt="{{$images->sortByDesc('vitrin')->first()['alt'] ?? ''}}" class="img-fluid" ></img>
+
+           </a>
     </figure>
     <div class="block-4-text p-4">
         <h3><a href="{{route('urundetay',$product->slug)}}">{{$product->name}}</a></h3>

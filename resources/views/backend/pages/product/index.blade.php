@@ -34,7 +34,14 @@
                     @foreach ($products as $item)
                     <tr class="item" item-id="{{ $item->id }}">
                         <td class="py-1">
-                          <img src="{{asset($item->image)}}" alt="image"/>
+
+
+                            @php
+                            $images = collect($item->images->data ?? '');
+                            @endphp
+                            <img src="{{asset($images->sortByDesc('vitrin')->first()['image'] ?? 'img/resimyok.png')}}" ></img>
+
+
                         </td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->category->name ?? ''}}</td>

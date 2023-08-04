@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-          $categories = Category::with('category:id,cat_ust,name')->get();
+          $categories = Category::with('category:id,cat_ust,name')->with('images')->get();
         return view('backend.pages.category.index',compact('categories'));
     }
 
