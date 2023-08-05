@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Category;
+use App\Models\ImageMedia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -38,7 +39,6 @@ class CategoryController extends Controller
                 'cat_ust'=>$request->cat_ust,
                 'status'=>$request->status,
                 'content'=>$request->content,
-                'image'=> $resimurl ?? NULL,
             ]);
 
 
@@ -77,21 +77,11 @@ class CategoryController extends Controller
 
         $category = Category::where('id',$id)->firstOrFail();
 
-       /* if($request->hasFile('image')) {
-            dosyasil($category->image);
-
-            $image = $request->file('image');
-            $dosyadi = $request->name;
-            $yukleKlasor = 'img/kategori/';
-            $resimurl = resimyukle($image,$dosyadi,$yukleKlasor);
-        } */
-
         $category->update([
             'name'=>$request->name,
             'cat_ust'=>$request->cat_ust,
             'status'=>$request->status,
             'content'=>$request->content,
-            'image'=>$resimurl ?? $category->image,
         ]);
 
 
@@ -110,7 +100,15 @@ class CategoryController extends Controller
 
         $category = Category::where('id',$request->id)->firstOrFail();
 
-        dosyasil($category->image);
+        $imageMedia = ImageMedia::where('model_name', 'Category')->where('table_id', $category->id)->first();
+
+        if (!empty($imageMedia->data)) {
+            foreach ($imageMedia->data as $img) {
+                dosyasil($img['image']);
+            }
+            $imageMedia->delete();
+        }
+
         $category->delete();
         return response(['error'=>false,'message'=>'Başarıyla Silindi.']);
     }

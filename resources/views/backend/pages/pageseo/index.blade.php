@@ -5,9 +5,9 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Site Ayarları</h4>
+          <h4 class="card-title">Basic Table</h4>
           <p class="card-description">
-            <a href="{{route('panel.setting.create')}}" class="btn btn-primary">Yeni</a>
+            <a href="{{route('panel.pageseo.create')}}" class="btn btn-primary">Yeni</a>
           </p>
 
             @if (session()->get('success'))
@@ -22,26 +22,37 @@
               <thead>
                 <tr>
                   <th>Resim</th>
-                  <th>Key</th>
-                  <th>Value</th>
+                  <th>Başlık</th>
+                  <th>Slogan</th>
+                  <th>Link</th>
+                  <th>Status</th>
                   <th>Edit</th>
                 </tr>
               </thead>
               <tbody>
-                @if (!empty($sets) && $sets->count() > 0)
-                    @foreach ($sets as $setting)
-                    <tr class="item" item-id="{{ $setting->id }}">
-
+                @if (!empty($pageseos) && $pageseos->count() > 0)
+                    @foreach ($pageseos as $pageseo)
+                    <tr class="item" item-id="{{ $pageseo->id }}">
                         <td class="py-1">
-                            @if ($setting->set_type == 'image')
-                                 <img src="{{asset($setting->data)}}" alt="image"/>
-                            @endif
+
+                          @php
+                          $images = collect($pageseo->images->data ?? '');
+                          @endphp
+                          <img src="{{asset($images->sortByDesc('vitrin')->first()['image'] ?? 'img/resimyok.png')}}" ></img>
+
                         </td>
-                        <td>{{$setting->name}}</td>
-                        <td>{{$setting->data ?? ''}}</td>
-                        <td>{{$setting->set_type}}</td>
+                        <td>{{$pageseo->dil}}</td>
+                        <td>{{$pageseo->page ?? ''}}</td>
+                        <td>{{$pageseo->pageinfo->page ?? ''}}</td>
+                        <td>{{$pageseo->title}}</td>
+                        <td>{{$pageseo->description}}</td>
+                        <td>{{$pageseo->keywords}}</td>
+                        <td>
+
+                        </td>
                         <td class="d-flex">
-                            <a href="{{route('panel.setting.edit',$setting->id)}}" class="btn btn-primary mr-2">Düzenle</a>
+                            <a href="{{route('panel.pageseo.edit',$pageseo->id)}}" class="btn btn-primary mr-2">Düzenle</a>
+
 
                             <button type="button" class="silBtn btn btn-danger">Sil</button>
                         </td>
@@ -65,6 +76,8 @@
 @section('customjs')
 <script>
 
+
+
         $(document).on('click', '.silBtn', function(e) {
             e.preventDefault();
                 var item = $(this).closest('.item');
@@ -77,7 +90,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             type:"DELETE",
-                            url:"{{route('panel.setting.destroy')}}",
+                            url:"{{route('panel.pageseo.destroy')}}",
                             data:{
                                 id:id,
                             },

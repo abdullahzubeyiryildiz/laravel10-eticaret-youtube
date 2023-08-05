@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ImageMedia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
@@ -34,14 +35,6 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-           /* if($request->hasFile('image')) {
-                $image = $request->file('image');
-                $dosyadi = $request->name;
-                $yukleKlasor = 'img/urun/';
-                klasorac($yukleKlasor);
-                $resimurl = resimyukle($image,$dosyadi,$yukleKlasor);
-            } */
-
 
            $product = Product::create([
                 'name'=>$request->name,
@@ -56,7 +49,6 @@ class ProductController extends Controller
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'keywords'=>$request->keywords,
-                'image'=> $resimurl ?? NULL,
                 'status'=>$request->status,
             ]);
 
@@ -117,7 +109,6 @@ class ProductController extends Controller
             'color'=>$request->color,
             'qty'=>$request->qty,
             'kdv'=>$request->kdv,
-            'image'=> $resimurl ?? $product->image,
             'title'=>$request->title,
             'description'=>$request->description,
             'keywords'=>$request->keywords,
@@ -140,7 +131,16 @@ class ProductController extends Controller
 
         $product = Product::where('id',$request->id)->firstOrFail();
 
-        dosyasil($product->image);
+        $imageMedia = ImageMedia::where('model_name', 'Product')->where('table_id', $product->id)->first();
+
+        if (!empty($imageMedia->data)) {
+            foreach ($imageMedia->data as $img) {
+                dosyasil($img['image']);
+            }
+            $imageMedia->delete();
+        }
+
+
         $product->delete();
         return response(['error'=>false,'message'=>'Başarıyla Silindi.']);
     }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use ImageResize;
 use App\Models\Slider;
+use App\Models\ImageMedia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SLiderRequest;
-use ImageResize;
+
 class SliderController extends Controller
 {
     /**
@@ -33,13 +35,6 @@ class SliderController extends Controller
     public function store(SLiderRequest $request)
     {
 
-           /* if($request->hasFile('image')) {
-                $image = $request->file('image');
-                $dosyadi = $request->name;
-                $yukleKlasor = 'img/slider/';
-                klasorac($yukleKlasor);
-                $resimurl = resimyukle($image,$dosyadi,$yukleKlasor);
-            } */
 
 
           $slider =  Slider::create([
@@ -47,7 +42,6 @@ class SliderController extends Controller
                 'link'=>$request->link,
                 'content'=>$request->content,
                 'status'=>$request->status,
-                'image'=> $resimurl ?? NULL,
             ]);
 
             if ($request->hasFile('image')) {
@@ -83,22 +77,11 @@ class SliderController extends Controller
 
         $slider = Slider::where('id',$id)->firstOrFail();
 
-       /* if($request->hasFile('image')) {
-            dosyasil($slider->image);
-
-            $image = $request->file('image');
-            $dosyadi = $request->name;
-            $yukleKlasor = 'img/slider/';
-            klasorac($yukleKlasor);
-            $resimurl = resimyukle($image,$dosyadi,$yukleKlasor);
-        } */
-
         $slider->update([
             'name'=>$request->name,
             'link'=>$request->link,
             'content'=>$request->content,
             'status'=>$request->status,
-            'image'=> $resimurl ?? $slider->image,
         ]);
 
 
@@ -118,7 +101,16 @@ class SliderController extends Controller
 
         $slider = Slider::where('id',$request->id)->firstOrFail();
 
-        dosyasil($slider->image);
+        $imageMedia = ImageMedia::where('model_name', 'Slider')->where('table_id', $slider->id)->first();
+
+        if (!empty($imageMedia->data)) {
+            foreach ($imageMedia->data as $img) {
+                dosyasil($img['image']);
+            }
+            $imageMedia->delete();
+        }
+
+
         $slider->delete();
         return response(['error'=>false,'message'=>'Başarıyla Silindi.']);
     }

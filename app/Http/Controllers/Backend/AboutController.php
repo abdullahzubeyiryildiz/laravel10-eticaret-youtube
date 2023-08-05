@@ -15,23 +15,12 @@ class AboutController extends Controller
 
     public function update(Request $request, $id = 1) {
 
-       /* if($request->hasFile('image')) {
-            $image = $request->file('image');
-            $dosyadi = $request->name;
-            $yukleKlasor = 'img/about/';
-            klasorac($yukleKlasor);
-            $resimurl = resimyukle($image,$dosyadi,$yukleKlasor);
-
-        } */
-
 
        $about = About::where('id',$id)->first();
 
         About::updateOrCreate(
             ['id'=>$id],
             [
-
-                'image'=>$resimurl ?? $about->image,
                 'name'=>$request->name,
                 'content'=>$request->content,
                 'text_1_icon'=>$request->text_1_icon,
