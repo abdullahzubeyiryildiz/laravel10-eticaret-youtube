@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PageSeoController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ImageSeoController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ImageUploadController;
 
@@ -77,6 +78,10 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::put('/pageseo/{id}/update', [PageSeoController::class,'update'])->name('pageseo.update');
     Route::delete('/pageseo/destroy', [PageSeoController::class,'destroy'])->name('pageseo.destroy');
 
+
+    Route::get('/imageseo', [ImageSeoController::class,'index'])->name('imageseo.index');
+    Route::delete('/imageseo/destroy', [ImageSeoController::class,'destroy'])->name('imageseo.destroy');
+    Route::post('/imageseo/update', [ImageSeoController::class,'update'])->name('imageseo.update');
 
 
     Route::post('/image-gorsel/vitrin', [ImageUploadController::class,'vitrin'])->name('vitrin.yap');
