@@ -65,7 +65,7 @@ class SliderController extends Controller
      */
     public function edit(string $id)
     {
-         $slider = Slider::where('id',$id)->first();
+         $slider = Slider::where('id',$id)->with('images')->first();
         return view('backend.pages.slider.edit',compact('slider'));
     }
 

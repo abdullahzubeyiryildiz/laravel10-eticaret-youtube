@@ -61,7 +61,7 @@
             <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
                 <a class="block-2-item" href="{{url($category->slug)}}">
                   <figure class="image">
-                 
+
                        @php
                       $imagescat = collect($category->images->data ?? '');
                       @endphp
@@ -101,7 +101,7 @@
                       @endphp
                       <img src="{{asset($imageproduct->sortByDesc('vitrin')->first()['image'] ?? 'img/resimyok.png')}}"  alt="{{$imageproduct->sortByDesc('vitrin')->first()['alt'] ?? ''}}" class="img-fluid" ></img>
 
- 
+
                           </figure>
                           <div class="block-4-text p-4">
                             <h3><a href="#">{{$item->name}}</a></h3>
@@ -132,7 +132,7 @@
           <div class="col-md-12 col-lg-5 text-center pl-md-5">
             <h4>{{$settings['kampanya_title'] ?? ''}}</h4>
             <p>{{$settings['kampanya_text'] ?? ''}}</p>
-            <p><a href="{{route('indirimdekiurunler')}}" class="btn btn-primary btn-sm">İndirideki Ürünler</a></p>
+            <p><a href="{{route('tumurunlerindirim')}}" class="btn btn-primary btn-sm">İndirideki Ürünler</a></p>
           </div>
         </div>
       </div>

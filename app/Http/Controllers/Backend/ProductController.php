@@ -74,7 +74,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-         $product = Product::where('id',$id)->first();
+         $product = Product::where('id',$id)->with('images')->first();
 
 
         $categories = Category::get();

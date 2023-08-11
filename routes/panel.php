@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\PageSeoController;
@@ -25,6 +26,17 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::put('/slider/{id}/update', [SliderController::class,'update'])->name('slider.update');
     Route::delete('/slider/destroy', [SliderController::class,'destroy'])->name('slider.destroy');
     Route::post('/slider-durum/update', [SliderController::class,'status'])->name('slider.status');
+
+
+
+
+    Route::get('/coupons', [CouponController::class,'index'])->name('coupons.index');
+    Route::get('/coupons/ekle', [CouponController::class,'create'])->name('coupons.create');
+    Route::get('/coupons/{id}/edit', [CouponController::class,'edit'])->name('coupons.edit');
+    Route::post('/coupons/store', [CouponController::class,'store'])->name('coupons.store');
+    Route::put('/coupons/{id}/update', [CouponController::class,'update'])->name('coupons.update');
+    Route::delete('/coupons/destroy', [CouponController::class,'destroy'])->name('coupons.destroy');
+    Route::post('/coupons-durum/update', [CouponController::class,'status'])->name('coupons.status');
 
 
 
