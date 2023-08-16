@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\ImageUploadController;
 Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'panel.'], function() {
 
     Route::get('/', [DashboardController::class,'index'])->name('index');
+    Route::get('/chart', [DashboardController::class,'orderchart'])->name('order.chart');
 
     Route::get('/slider', [SliderController::class,'index'])->name('slider.index');
     Route::get('/slider/ekle', [SliderController::class,'create'])->name('slider.create');
