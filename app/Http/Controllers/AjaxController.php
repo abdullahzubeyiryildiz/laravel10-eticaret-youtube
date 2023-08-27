@@ -42,7 +42,7 @@ class AjaxController extends Controller
 
        $sonkaydedilen =  Contact::create($newdata);
 
-       return back()->with(['message'=>'Başarıyla Gönderildi']);
+       return response()->json(['error'=>false,'message'=>'Başarıyla Gönderildi']);
 
    }
 
