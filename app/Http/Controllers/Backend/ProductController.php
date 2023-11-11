@@ -6,7 +6,11 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ImageMedia;
 use Illuminate\Http\Request;
+
+use App\Exports\ProductExport;
+
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
@@ -152,5 +156,9 @@ class ProductController extends Controller
 
         Product::where('id',$request->id)->update(['status'=> $updatecheck]);
         return response(['error'=>false,'status'=>$update]);
+    }
+
+    public function export(Request $request){
+        return  Excel::download(new ProductExport, 'urunler.xlsx');
     }
 }

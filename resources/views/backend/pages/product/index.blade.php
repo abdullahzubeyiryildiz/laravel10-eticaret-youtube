@@ -8,6 +8,8 @@
           <h4 class="card-title">Kategori</h4>
           <p class="card-description">
             <a href="{{route('panel.product.create')}}" class="btn btn-primary">Yeni</a>
+
+            <a href="{{route('panel.product.export')}}" class="btn btn-primary">Excel Dışa Aktar</a>
           </p>
 
             @if (session()->get('success'))

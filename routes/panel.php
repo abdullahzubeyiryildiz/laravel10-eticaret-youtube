@@ -49,6 +49,8 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
 
 
     Route::resource('/product', ProductController::class)->except('destroy');
+    Route::get('/product-export', [ProductController::class,'export'])->name('product.export');
+
     Route::delete('/product/destroy', [ProductController::class,'destroy'])->name('product.destroy');
     Route::post('/product-durum/update', [ProductController::class,'status'])->name('product.status');
 
