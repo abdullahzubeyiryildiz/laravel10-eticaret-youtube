@@ -5,9 +5,11 @@ namespace App\Exports;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 
-class ProductExport implements FromView
+
+class ProductExport implements FromView,WithChunkReading
 {
     public function chunkSize(): int
     {
