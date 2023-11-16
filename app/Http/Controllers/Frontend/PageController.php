@@ -31,9 +31,11 @@ class PageController extends Controller
             $altkategori = null;
             if(!empty($category) && empty($slug)) {
                   $anakategori = Category::where('slug',$category)->first();
+                  $categorySlug = $anakategori->slug ?? '';
             }else if (!empty($category) && !empty($slug)){
                  $anakategori = Category::where('slug',$category)->first();
                  $altkategori = Category::where('slug',$slug)->first();
+                 $categorySlug = $altkategori->slug ?? '';
             }
 
 
@@ -58,7 +60,7 @@ class PageController extends Controller
             }
 
 
-          $products = Product::where('status','1')->select(['id','name','slug','size','color','price','category_id','image'])
+            $products = Product::where('status','1')->select(['id','name','slug','size','color','price','category_id','image'])
             ->where(function($q) use($sizes,$colors,$startprice,$endprice) {
                if(!empty($sizes)) {
                     $q->whereIn('size', $sizes);
@@ -77,9 +79,9 @@ class PageController extends Controller
                 return $q;
             })
             ->with('category:id,name,slug')
-            ->whereHas('category', function($q) use ($category,$slug) {
-                if(!empty($slug)) {
-                    $q->where('slug', $slug);
+            ->whereHas('category', function($q) use ($categorySlug) {
+                if(!empty($categorySlug)) {
+                    $q->where('slug', $categorySlug);
                 }
                 return $q;
             })
