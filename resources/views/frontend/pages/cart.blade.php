@@ -24,6 +24,7 @@
                         <tr>
                             <th class="product-thumbnail">Resim</th>
                             <th class="product-name">Ürün</th>
+                            <th class="product-name">Size</th>
                             <th class="product-price">Fiyat</th>
                             <th class="product-quantity">Adet</th>
                             <th class="product-total">Tutar</th>
@@ -40,6 +41,7 @@
                             <td class="product-name">
                                 <h2 class="h5 text-black">{{$cart['name'] ?? ''}}</h2>
                             </td>
+                            <td>{{$cart['size']}}</td>
                             <td>{{$cart['price']}}</td>
                             <td>
                                 <div class="input-group mb-3" style="max-width: 120px;">

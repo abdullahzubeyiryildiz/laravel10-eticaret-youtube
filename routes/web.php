@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartNewController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PageHomeController;
@@ -39,14 +39,14 @@ Route::group(['middleware'=>'sitesetting'], function() {
 
     Route::post('/iletisim/kaydet', [AjaxController::class,'iletisimkaydet'])->name('iletisim.kaydet');
 
-    Route::get('/sepet', [CartController::class,'index'])->name('sepet');
-    Route::get('/sepet/form', [CartController::class,'sepetform'])->name('sepet.form');
+    Route::get('/sepet', [CartNewController::class,'index'])->name('sepet');
+    Route::get('/sepet/form', [CartNewController::class,'sepetform'])->name('sepet.form');
 
-    Route::post('/sepet/ekle', [CartController::class,'add'])->name('sepet.add');
-    Route::post('/sepet/remove', [CartController::class,'remove'])->name('sepet.remove');
-    Route::post('/sepet/couponcheck', [CartController::class,'couponcheck'])->name('coupon.check');
-    Route::post('/sepet/newqty', [CartController::class,'newqty'])->name('sepet.newqty');
-    Route::post('/sepet/save', [CartController::class,'cartSave'])->name('sepet.cartSave');
+    Route::post('/sepet/ekle', [CartNewController::class,'add'])->name('sepet.add');
+    Route::post('/sepet/remove', [CartNewController::class,'remove'])->name('sepet.remove');
+    Route::post('/sepet/couponcheck', [CartNewController::class,'couponcheck'])->name('coupon.check');
+    Route::post('/sepet/newqty', [CartNewController::class,'newqty'])->name('sepet.newqty');
+    Route::post('/sepet/save', [CartNewController::class,'cartSave'])->name('sepet.cartSave');
 
 
     Auth::routes();

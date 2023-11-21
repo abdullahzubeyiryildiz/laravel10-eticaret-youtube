@@ -29,7 +29,7 @@
           <p><strong class="text-primary h4">{{number_format($product->price,2)}}</strong></p>
           <form action="{{route('sepet.add')}}" method="POST">
             @csrf
-            <input type="hidden" name="product_id" value="{{$product->id}}">
+            <input type="hidden" name="product_id" value="{{sifrele($product->id)}}">
           <div class="mb-1 d-flex">
             <label for="option-xs" class="d-flex mr-3 mb-3">
                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xs" name="size" {{$product->size == 'XS' ? 'checked' : ''}} value="XS"></span> <span class="d-inline-block text-black">XS</span>
