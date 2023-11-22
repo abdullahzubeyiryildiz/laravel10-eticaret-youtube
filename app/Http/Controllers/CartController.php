@@ -98,46 +98,57 @@ class CartController extends Controller
 
 
     public function add(Request $request) {
-            $productID= sifrelecoz($request->product_id);
-            $qty= $request->qty ?? 1;
-            $size= $request->size;
-             $urun = Product::find($productID);
-            if(!$urun) {
-                return back()->withError('Ürün Bulanamadı!');
+        $productID= sifrelecoz($request->product_id);
+        $qty= $request->qty ?? 1;
+         $size= $request->size;
+         $urun = Product::find($productID);
+        if(!$urun) {
+            return back()->withError('Ürün Bulanamadı!');
+        }
+        $cartItem = session('cart',[]);
+
+        if(!empty($request->coupon_code) && $request->coupon_code == 'tumurun') {
+             $kupon = Coupon::where('name',$request->coupon_code)->where('status','1')->first();
+
+            $kuponprice = $kupon->discount_rate ? 2 : 1;
+
+            session()->put('coupon_code',$request->coupon_code);
+
+        }else {
+            $kuponprice = 1;
+        }
+
+        $sizeExists = false;
+
+        foreach ($cartItem as $key => $item) {
+            if ($item['productID'] == $productID && $item['size'] == $size) {
+                $cartItem[$key]['qty'] += $qty;
+                $sizeExists = true;
+                break;
             }
-            $cartItem = session('cart',[]);
+        }
 
-            if(!empty($request->coupon_code) && $request->coupon_code == 'tumurun') {
-                 $kupon = Coupon::where('name',$request->coupon_code)->where('status','1')->first();
+        if (!$sizeExists) {
+            $cartItem[] = [
+                'productID' => $productID,
+                'image' => $urun->image,
+                'name' => $urun->name,
+                'price' => $urun->price / $kuponprice,
+                'qty' => $qty,
+                'kdv' => $urun->kdv,
+                'size' => $size,
+            ];
+        }
 
-                $kuponprice = $kupon->discount_rate ? 2 : 1;
+        session(['cart'=>$cartItem]);
 
-                session()->put('coupon_code',$request->coupon_code);
 
-            }else {
-                $kuponprice = 1;
-            }
+        if($request->ajax()) {
+            return response()->json(['sepetCount'=>count(session()->get('cart')), 'message'=>'Ürün Sepete Eklendi!']);
+        }
 
-            if(array_key_exists($productID,$cartItem)){
-                $cartItem[$productID]['qty'] += $qty;
-            }else{
-                $cartItem[$productID]=[
-                    'image'=>$urun->image,
-                    'name'=>$urun->name,
-                    'price'=> $urun->price /  $kuponprice,
-                    'qty'=>$qty,
-                    'kdv'=>$urun->kdv,
-                    'size'=>$size,
-                ];
-            }
-            session(['cart'=>$cartItem]);
-
-            if($request->ajax()) {
-                return response()->json(['sepetCount'=>count(session()->get('cart')), 'message'=>'Ürün Sepete Eklendi!']);
-            }
-
-           return back()->withSuccess('Ürün Sepete Eklendi!');
-    }
+       return back()->withSuccess('Ürün Sepete Eklendi!');
+}
 
     public function newqty(Request $request) {
         $productID= $request->product_id;
