@@ -23,7 +23,7 @@
 
         </div>
         <div class="col-md-6">
-          <h2 class="text-black">{{$product->name ?? ''}}</h2>
+          <h2 class="text-black">{{$product->name ?? ''}}</h2> <small>{{$pageViewCount}}</small>
           {!! $product->content ?? '' !!}
 
           <p><strong class="text-primary h4">{{number_format($product->price,2)}}</strong></p>
