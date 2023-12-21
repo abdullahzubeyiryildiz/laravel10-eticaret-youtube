@@ -10,6 +10,8 @@
             <a href="{{route('panel.product.create')}}" class="btn btn-primary">Yeni</a>
 
             <a href="{{route('panel.product.export')}}" class="btn btn-primary">Excel Dışa Aktar</a>
+            <a href="{{route('panel.product.import')}}" class="btn btn-primary">Excel İçe Aktar</a>
+
           </p>
 
             @if (session()->get('success'))

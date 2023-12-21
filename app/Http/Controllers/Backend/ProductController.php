@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Exports\ProductExport;
 
+use App\Imports\ProductImport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\ProductRequest;
@@ -160,5 +161,21 @@ class ProductController extends Controller
 
     public function export(Request $request){
         return  Excel::download(new ProductExport, 'urunler.xlsx');
+    }
+
+    public function import(Request $request){
+        return view('backend.pages.product.import');
+    }
+
+    public function importStore(Request $request){
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+          Excel::import(new ProductImport, $file);
+
+        return redirect()->back()->with('success', 'Excel İmportlandı!');
     }
 }

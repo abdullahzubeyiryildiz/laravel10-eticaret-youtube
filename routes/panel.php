@@ -51,6 +51,10 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::resource('/product', ProductController::class)->except('destroy');
     Route::get('/product-export', [ProductController::class,'export'])->name('product.export');
 
+    Route::get('/product-import', [ProductController::class,'import'])->name('product.import');
+    Route::post('/product-import', [ProductController::class,'importStore'])->name('product.importStore');
+
+
     Route::delete('/product/destroy', [ProductController::class,'destroy'])->name('product.destroy');
     Route::post('/product-durum/update', [ProductController::class,'status'])->name('product.status');
 
