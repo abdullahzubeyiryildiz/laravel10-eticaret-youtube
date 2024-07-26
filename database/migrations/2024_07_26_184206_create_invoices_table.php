@@ -8,11 +8,13 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('order_no')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
@@ -22,6 +24,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
+            $table->integer('status');
             $table->string('zip_code')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
@@ -30,8 +33,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('invoices');
     }

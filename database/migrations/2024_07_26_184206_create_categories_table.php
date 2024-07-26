@@ -8,26 +8,31 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('image')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->text('content')->nullable();
+            $table->string('description');
             $table->integer('cat_ust')->nullable();
-            $table->enum('status',['0','1'])->default('1');
+            $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('categories');
     }

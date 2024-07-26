@@ -8,12 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('page_seos', function (Blueprint $table) {
-            $table->id();
-            $table->string('dil',4)->default('tr');
+            $table->bigIncrements('id');
+            $table->string('dil', 4)->default('tr');
             $table->string('page')->nullable();
             $table->unsignedBigInteger('page_ust')->nullable();
             $table->string('title')->nullable();
@@ -26,8 +28,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('page_seos');
     }

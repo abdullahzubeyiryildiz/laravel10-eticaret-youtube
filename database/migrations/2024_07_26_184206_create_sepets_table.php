@@ -8,23 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('coupons', function (Blueprint $table) {
-            $table->id();
+        Schema::create('sepets', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->double('price',8,2)->nullable();
-            $table->enum('status',['0','1'])->default('1');
+            $table->decimal('price', 10)->nullable();
+            $table->integer('qty')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('sepets');
     }
 };
