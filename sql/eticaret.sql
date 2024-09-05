@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 22 Şub 2024, 21:23:08
+-- Üretim Zamanı: 05 Eyl 2024, 14:26:13
 -- Sunucu sürümü: 8.0.30
--- PHP Sürümü: 8.1.10
+-- PHP Sürümü: 8.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -259,45 +259,26 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_03_28_102541_create_sliders_table', 1),
-(6, '2023_04_08_114615_create_categories_table', 1),
-(7, '2023_04_11_103425_create_abouts_table', 1),
-(8, '2023_04_15_113348_create_site_settings_table', 1),
-(9, '2023_04_18_174247_create_contacts_table', 1),
-(10, '2023_04_22_103357_create_products_table', 1),
-(11, '2014_10_12_100000_create_password_resets_table', 2),
-(12, '2023_06_30_145316_create_coupons_table', 2),
-(14, '2023_07_08_155355_create_orders_table', 3),
-(15, '2023_07_08_161224_create_invoices_table', 3),
-(16, '2023_07_29_114704_create_page_seos_table', 4),
-(17, '2023_07_29_115244_create_image_media_table', 5),
-(18, '2023_09_09_214040_create_sepets_table', 6),
-(19, '2023_11_18_222429_create_jobs_table', 7),
-(20, '2023_12_12_233712_create_views_table', 8),
-(21, '2024_01_13_200653_create_abouts_table', 0),
-(22, '2024_01_13_200653_create_categories_table', 0),
-(23, '2024_01_13_200653_create_contacts_table', 0),
-(24, '2024_01_13_200653_create_coupons_table', 0),
-(25, '2024_01_13_200653_create_failed_jobs_table', 0),
-(26, '2024_01_13_200653_create_image_media_table', 0),
-(27, '2024_01_13_200653_create_invoices_table', 0),
-(28, '2024_01_13_200653_create_jobs_table', 0),
-(29, '2024_01_13_200653_create_orders_table', 0),
-(30, '2024_01_13_200653_create_page_seos_table', 0),
-(31, '2024_01_13_200653_create_password_reset_tokens_table', 0),
-(32, '2024_01_13_200653_create_password_resets_table', 0),
-(33, '2024_01_13_200653_create_personal_access_tokens_table', 0),
-(34, '2024_01_13_200653_create_products_table', 0),
-(35, '2024_01_13_200653_create_sepets_table', 0),
-(36, '2024_01_13_200653_create_site_settings_table', 0),
-(37, '2024_01_13_200653_create_sliders_table', 0),
-(38, '2024_01_13_200653_create_users_table', 0),
-(39, '2024_01_13_200653_create_views_table', 0),
-(44, '2024_02_16_164953_add_description_to_categories_table', 9);
+(102, '2024_07_26_184206_create_abouts_table', 0),
+(103, '2024_07_26_184206_create_categories_table', 0),
+(104, '2024_07_26_184206_create_contacts_table', 0),
+(105, '2024_07_26_184206_create_coupons_table', 0),
+(106, '2024_07_26_184206_create_failed_jobs_table', 0),
+(107, '2024_07_26_184206_create_image_media_table', 0),
+(108, '2024_07_26_184206_create_invoices_table', 0),
+(109, '2024_07_26_184206_create_jobs_table', 0),
+(110, '2024_07_26_184206_create_orders_table', 0),
+(111, '2024_07_26_184206_create_page_seos_table', 0),
+(112, '2024_07_26_184206_create_password_reset_tokens_table', 0),
+(113, '2024_07_26_184206_create_password_resets_table', 0),
+(114, '2024_07_26_184206_create_personal_access_tokens_table', 0),
+(115, '2024_07_26_184206_create_products_table', 0),
+(116, '2024_07_26_184206_create_sepets_table', 0),
+(117, '2024_07_26_184206_create_site_settings_table', 0),
+(118, '2024_07_26_184206_create_sliders_table', 0),
+(119, '2024_07_26_184206_create_users_table', 0),
+(120, '2024_07_26_184206_create_views_table', 0),
+(121, '2024_07_23_154847_create_sessions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -547,7 +528,8 @@ INSERT INTO `products` (`id`, `name`, `slug`, `image`, `category_id`, `short_tex
 (101, 'Siyah XS Urun', 'siyah-xs-urun-8', NULL, 1, '4 idli ürün', 194.00, 'XS', 'Siyah', 1, 0, '', '', '', '1', 'Yazıları', '2023-05-09 11:39:57', '2023-05-09 11:39:57'),
 (102, 'Mor L Urun', 'mor-l-urun-8', NULL, 2, '6 idli ürün', 37.00, 'L', 'Mor', 1, 0, '', '', '', '1', 'Yazıları', '2023-05-09 11:39:57', '2023-05-09 11:39:57'),
 (104, 'Deme2', 'deme2', 'img/urun/1688224597-deme2.webp', 4, 'kısabilgi', 41.00, 'L', 'Pembe', NULL, 0, 'Dene2 Description Tesst', 'Dene2 Keywords Tesst', 'Dene2 Title Tesst', '1', '<p>yazzz</p>', '2023-07-01 15:16:38', '2023-08-12 19:39:21'),
-(113, 'TestÜrün', 'testurun', NULL, 1, NULL, 99.00, 'M', 'Siyah', NULL, NULL, NULL, NULL, NULL, '0', NULL, '2023-12-16 21:31:12', '2023-12-16 21:31:12');
+(113, 'TestÜrün', 'testurun', NULL, 1, NULL, 99.00, 'M', 'Siyah', NULL, NULL, NULL, NULL, NULL, '0', NULL, '2023-12-16 21:31:12', '2023-12-16 21:31:12'),
+(114, 'Erkkekooo', 'erkkekooo', NULL, 3, 'test', 100.00, 'M', 'Kablumba', NULL, NULL, NULL, NULL, NULL, '1', '<p>tttt</p>', '2024-07-01 21:45:38', '2024-07-01 21:45:38');
 
 -- --------------------------------------------------------
 
@@ -570,6 +552,29 @@ CREATE TABLE `sepets` (
 
 INSERT INTO `sepets` (`id`, `name`, `price`, `qty`, `created_at`, `updated_at`) VALUES
 (6, 'test', 11.00, 1, '2023-09-09 18:58:05', '2023-09-09 18:58:05');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('1bImzf1yJkiUTAZYnWCdq5UVMSBWadIf2ZSje5sb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidm02UGNKN2dka3FwSGh6THNzVDNKTzFJc2F5NmtTWG95UWZjektCRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly9sYXJhdmVsMTEudGVzdC8/cGFnZT0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1723564861),
+('tCjmvuUkxrnau6bY4ptBbRk522e9pAkBV1S2aLIX', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiU0NIWlJjZ2twUnlkekZEcjZxVXBBYVRDQklvTzg1dXBodHNzRGxNRiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1723593798);
 
 -- --------------------------------------------------------
 
@@ -787,6 +792,14 @@ ALTER TABLE `sepets`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
 -- Tablo için indeksler `site_settings`
 --
 ALTER TABLE `site_settings`
@@ -868,7 +881,7 @@ ALTER TABLE `jobs`
 -- Tablo için AUTO_INCREMENT değeri `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `orders`
@@ -892,7 +905,7 @@ ALTER TABLE `personal_access_tokens`
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sepets`
